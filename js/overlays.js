@@ -231,6 +231,23 @@ const overlays = [
       ],
     },
   },
+  {
+    img: "./images/family.png",
+    title: "Extra",
+    info: {  paragraph:`<span style="color: white;">WHO AM I?</span> First and foremost, I am the father of Martin (7 years old) and Anastasia (3 years old), and the husband of Marija. We also have a fantastic Labrador puppy named Kaya. We are a multicultural family; I am Italian, my wife comes from North Macedonia, and the official language at home is English, although the children are already dealing with four languages, which we consider an added value.`
+    
+      
+    },
+  },
+  {
+    img: "./images/languageIcon.png",
+    title: "Extra",
+    info: {  paragraph:`<span style="color: white;">WHAT I LIKE?</span> I am a big football lover and have played it for most of my life. I love music, particularly progressive rock, roots and dub reggae, and electronic music. I enjoy TV series and movies, with thriller and pulp being my preferred genres. I feel at ease in nature, enjoying taking care of the garden and hosting barbecue gatherings. Occasionally, I indulge in cooking traditional dishes from my country. </br></br>In the field of computer science, aside from programming, I sometimes enjoy 'playing' with AI and graphics in general. Among other things, I like creating logos.`
+    
+      
+    },
+  },
+ 
 ];
 
 export default overlays;
