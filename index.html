@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./images/justME.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>C.v. 1.2</title>
+  </head>
+  <body>
+    <video autoplay muted loop class="bkgVideo2">
+      <source src="./videos/bkgVideo2.mp4" type="video/mp4" />
+      <!-- Aggiungi altri formati video come fallback per la compatibilità dei browser -->
+      Your browser does not support the video tag.
+    </video>
+    <div class="container">
+      <video autoplay muted loop class="bkgVideo1">
+        <source src="./videos/bkgVideo1.mp4" type="video/mp4" />
+        <!-- Aggiungi altri formati video come fallback per la compatibilità dei browser -->
+        Your browser does not support the video tag.
+      </video>
+      <header>
+        <aside class="logoName"><img class="nameImg" src="./images/name.png" alt="name" /></aside>
+
+        <aside class="hamburgerMenu">
+          <img class="menuIcon" src="./images/menu1.png" alt="menu" />
+          <img class="menuIcon hidden" src="./images/menu2.png" alt="menu" />
+          <img class="menuIcon hidden" src="./images/menu3.png" alt="menu" />
+          <img class="menuIcon last hidden" src="./images/menu4.png" alt="menu" />
+
+          <ul class="menuList hidden">
+            <li class="hidden"><a href="">About Me</a></li>
+            <li class="hidden even"><a href="">Education</a></li>
+            <li class="hidden"><a href="">Experiences</a></li>
+            <li class="hidden even"><a href="">Skills</a></li>
+            <li class="hidden"><a href="">Portfolio</a></li>
+            <li class="hidden even"><a href="">Extra</a></li>
+            <li class="hidden xItem"><button id="resetBtn">X</button></li>
+          </ul>
+        </aside>
+      </header>
+
+      <main id="main-content">
+        <figure class="pic"><img class="myPic" src="./images/educationIcon.png" alt="me" /></figure>
+        <h2 class="welcome">Welcome!</h2>
+        <section class="textArea">
+          <p id="typedText"></p>
+          <p id="typedText2"></p>
+
+          <button class="startBtn notVisible navigationBtn">Start</button>
+        </section>
+      
+      </main>
+
+      <footer></footer>
+    </div>
+    <script type="module" src="js/script.js"></script>
+  </body>
+</html>
