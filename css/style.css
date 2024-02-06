@@ -355,17 +355,17 @@ button:hover {
   color: white;
 }
 
-.bkgVideo1 {
+.bkgVideo2 {
  z-index: -1;
   position: absolute;
   width: 1400px;
   height: 800px;
-  opacity: 0.2;
+  opacity: 0.3;
  right:0;
  bottom:0;
   border-radius: 10px;
 }
-.bkgVideo2 {
+.bkgVideo1 {
  z-index: -2;
   position: absolute;
   width: 2400px;
