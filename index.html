@@ -8,19 +8,15 @@
     <title>C.v. 1.2</title>
   </head>
   <body>
-    <video autoplay muted loop class="bkgVideo1">
-      <source src="/videos/bkgVideo1.mp4" type="video/mp4">
-      <source src="/videos/bkgVideo1.webm" type="video/webm">
-      <source src="/videos/bkgVideo1.ogg" type="video/ogg">
-      <!-- Aggiungi altri formati video come fallback per la compatibilità dei browser -->
+    <!-- <video autoplay muted loop class="bkgVideo1">
+      <source src="./videos/bkgVideo1.mp4" type="video/mp4" />
       Your browser does not support the video tag.
-    </video>
-    <div class="container">
-      <video autoplay muted loop class="bkgVideo2">
+    </video> -->
+    <div class="supremeContainer">
+      <!--   <video autoplay muted loop class="bkgVideo1">
         <source src="./videos/bkgVideo1.mp4" type="video/mp4" />
-        <!-- Aggiungi altri formati video come fallback per la compatibilità dei browser -->
         Your browser does not support the video tag.
-      </video>
+      </video> -->
       <header>
         <aside class="logoName"><img class="nameImg" src="./images/name.png" alt="name" /></aside>
 
@@ -42,6 +38,12 @@
         </aside>
       </header>
 
+      <figure>
+        <img class="emanuele" src="./images/myPic.png" alt="emanuele">
+      </figure>
+
+      <button id="prevBtn" class="navigationBtn">◄</button>
+      <button id="nextBtn" class="navigationBtn">►</button>
       <main id="main-content">
         <figure class="pic"><img class="myPic" src="./images/educationIcon.png" alt="me" /></figure>
         <h2 class="welcome">Welcome!</h2>
@@ -51,24 +53,98 @@
 
           <button class="startBtn notVisible navigationBtn">Start</button>
         </section>
-      
       </main>
 
-      <footer></footer>
+      
+
+      <section id="summering">
+        <h2>Summering...</h2>
+        <button class="bigCloseBtn">X</button>
+        <div class="summeringWrapper">
+          <div class="listWrapper">
+            <h3>Education</h3>
+            <ul>
+              <li>I am a technical specialist in tourism and hospitality services</li>
+              <li>I studied to integrate myself better into Swedish society.</li>
+              <li>I focused my attention on the field of programming through JavaScript</li>
+            </ul>
+          </div>
+
+          <div class="listWrapper">
+            <h3>Jobs</h3>
+            <ul>
+              <li>Years of experience in the tourism and entertainment industry.</li>
+              <li>Consolidated experience in the construction industry and excellent manual skills.</li>
+            </ul>
+          </div>
+
+          <div class="listWrapper">
+            <h3>Main skills</h3>
+            <ul>
+              <li>I consider myself to be the typical person who can think outside the box.</li>
+              <li>
+                I have the ability to blend into a group and sometimes take the lead if required or if it happens
+                naturally.
+              </li>
+              <li>Organization is my watchword, and problem-solving is my daily bread.</li>
+            </ul>
+          </div>
+          <div class="listWrapper">
+            <h3>Defects !?!</h3>
+            <ul>
+              <li>At times, I am obsessed with punctuality.</li>
+              <li>Sometimes, I tend to overextend myself to avoid disappointing others.</li>
+            </ul>
+          </div>
+        </div>
+
+        <p>
+          To conclude, I am someone who loves his <span class="specialWord"> family </span> and is continuously
+          motivated to learn <span class="specialWord"> new things </span>, as demonstrated by my work experiences and
+          what I seek is simply the opportunity to do what I am truly meant for. <br /><br />
+          <strong> Where do I see myself in 5 years? </strong> Definitely in front of a computer, because from there I'm
+          learning to feel <span class="specialWord"> invincible </span>.
+        </p>
+      </section>
+
+      <footer>
+      
+        <ul>
+          <li>Björkliden 122</li>
+          <li>58665 Linköping</li>
+          <li><a href="mailto:emanuele.dng86@gmail.com">emanuele.dng86@gmail.com</a></li>
+          <li> <a href="tel:+46722116422">+46722116422</a></li>
+        </ul>
+
+        <img src="./images/maps.png" alt="map">,
+
+        
+        <ul>
+          <li>Björkliden 122</li>
+          <li>58665 Linköping</li>
+          <li><a href="mailto:emanuele.dng86@gmail.com">emanuele.dng86@gmail.com</a></li>
+          <li> <a href="tel:+46722116422">+46722116422</a></li>
+        </ul>
+     
+        
+      </footer>
     </div>
+
     <script type="module" src="js/script.js"></script>
     <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/65c1f5a28d261e1b5f5cd2a2/1hluqf0n0';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-  })();
-  </script>
-  <!--End of Tawk.to Script-->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/65c1f5a28d261e1b5f5cd2a2/1hluqf0n0";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+    <!--End of Tawk.to Script-->
   </body>
 </html>

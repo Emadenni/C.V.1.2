@@ -4,6 +4,12 @@ const menuIcons = document.querySelectorAll(".menuIcon");
 const menuListItems = document.querySelectorAll(".menuList li");
 const menuList = document.querySelector(".menuList");
 const startBtn = document.querySelector(".startBtn");
+const mainContent = document.getElementById("main-content");
+const summering = document.getElementById("summering");
+const hamburgerMenu = document.querySelector(".hamburgerMenu");
+const bigCloseBtn = document.querySelector(".bigCloseBtn");
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
 
 menuIcons.forEach((icon) => {
   icon.addEventListener("click", () => {
@@ -114,9 +120,7 @@ setTimeout(function () {
 /* startBtn.addEventListener("click", () => {
   console.log("Clicked start button");
 }); */
-
-
-
+document.addEventListener('DOMContentLoaded', function() {
 // Funzione per visualizzare l'overlay
 let overlayIndex = 0; // Indice per tenere traccia dell'overlay corrente
 
@@ -125,6 +129,7 @@ function createOverlay(overlay) {
     <section id="overlay-content">
       <figure class="pic"><img class="argumentsIcons" src="${overlay.img}" alt="pic" /></figure>
       <article>
+      
         <h2 id="overlayTitle">${overlay.title}</h2>
         <div id="overlayInfoBox">
           ${overlay.info.paragraph ? `<p id="overlayParagraph">${overlay.info.paragraph}</p>` : ""}
@@ -153,45 +158,55 @@ function createProgressBar() {
 
 // Aggiorna la funzione showOverlay
 function showOverlay() {
-  const mainContent = document.getElementById('main-content');
-
   // Svuota completamente mainContent
-  mainContent.innerHTML = '';
+  mainContent.innerHTML = "";
 
   // Controlla se abbiamo più overlay da mostrare
   if (overlayIndex < overlays.length) {
     const overlay = overlays[overlayIndex];
 
+   
     if (overlay && overlay.img && overlay.title && overlay.info) {
-      const overlayContainer = document.createElement('div');
+      const overlayContainer = document.createElement("div");
       overlayContainer.innerHTML = createOverlay(overlay);
       overlayContainer.innerHTML += createProgressBar();
 
       // Aggiungi gestione eventi per i bottoni (back, next, skip) e altre logiche necessarie
-      const backBtn = overlayContainer.querySelector('#backBtn');
-      const continueBtn = overlayContainer.querySelector('#continueBtn');
-      const skipBtn = overlayContainer.querySelector('#skipBtn');
+      const backBtn = overlayContainer.querySelector("#backBtn");
+      const continueBtn = overlayContainer.querySelector("#continueBtn");
+      const skipBtn = overlayContainer.querySelector("#skipBtn");
 
-      backBtn.addEventListener('click', handleBack);
-      continueBtn.addEventListener('click', handleContinue);
-      skipBtn.addEventListener('click', handleSkip);
-
+      backBtn.addEventListener("click", handleBack);
+      continueBtn.addEventListener("click", handleContinue);
+      skipBtn.addEventListener("click", handleSkip);
+   
       // Mostra l'overlay
       mainContent.appendChild(overlayContainer);
       updateProgressBar(); // Aggiorna la barra di progresso iniziale
+     if (overlayIndex === 19) {
+  prevBtn.style.display = "block";
+  nextBtn.style.display = "block";
+  
+} else {
+  prevBtn.style.display = "none";
+  nextBtn.style.display = "none";
+}
+
+      
     } else {
-      console.error('Dati overlay non validi o mancanti.');
+      console.error("Dati overlay non validi o mancanti.");
     }
   } else {
     // Mostriamo tutti gli overlay, fai qualcosa quando hai finito
-    console.log('Hai mostrato tutti gli overlay!');
+    showSummering();
   }
 }
 
+
 // Funzione per aggiornare la barra di progresso
 function updateProgressBar() {
-  const progressBar = document.getElementById('progress-bar');
-  const progressPercentage = (overlayIndex + 1) / overlays.length * 100; // Calcola la percentuale di progresso
+  const progressBar = document.getElementById("progress-bar");
+  const progressPercentage = ((overlayIndex + 1) / overlays.length) * 100; // Calcola la percentuale di progresso
   progressBar.style.width = `${progressPercentage}%`;
 }
 
@@ -199,13 +214,12 @@ function updateProgressBar() {
 // ...
 
 // Aggiungi la logica per mostrare l'overlay quando si clicca su "Start"
-startBtn.addEventListener('click', showOverlay);
+startBtn.addEventListener("click", showOverlay);
 
 function handleBack() {
-  
   // Logica per tornare all'overlay precedente
   overlayIndex--;
-  updateProgressBar()
+  updateProgressBar();
   showOverlay();
   console.log("Back button clicked");
 }
@@ -213,15 +227,80 @@ function handleBack() {
 function handleContinue() {
   // Logica per passare all'overlay successivo
   overlayIndex++;
-  updateProgressBar()
+  updateProgressBar();
   showOverlay(); // Mostra il prossimo overlay
 }
 
 function handleSkip() {
   // Logica per saltare agli ultimi overlay
   overlayIndex = overlays.length; // Imposta l'indice all'ultimo overlay
-  showOverlay(); // Mostra l'ultimo overlay
+  showSummering();
 }
 
 // Aggiungi la logica per mostrare l'overlay quando si clicca su "Start"
 startBtn.addEventListener("click", showOverlay);
+
+function showSummering() {
+  if ((overlayIndex = overlays.length)) {
+    console.log("last overlay");
+    mainContent.style.display = "none";
+    menuIcons.forEach((icon) => {
+      icon.style.display = "none";
+    });
+    summering.style.display = "flex";
+    bigCloseBtn.style.display = "block";
+
+    bigCloseBtn.addEventListener("click", () => {
+      location.reload();
+    });
+  }
+}
+
+
+
+function nextSlide() {
+  const gallery = document.querySelector('.gallery');
+  const slides = gallery.querySelectorAll('.slide');
+
+  // Sposta l'ultima immagine alla prima posizione
+  const lastSlide = slides[slides.length - 1];
+  gallery.insertBefore(lastSlide, slides[0]);
+
+  // Rimuovi la classe 'center-slide' da tutte le immagini
+  slides.forEach(slide => {
+    slide.classList.remove('center-slide');
+  });
+
+  // Aggiorna la nuova immagine centrale (seconda immagine)
+  const newCenterSlide = gallery.querySelector('.slide:nth-child(2)');
+  newCenterSlide.classList.add('center-slide');
+}
+
+
+// Funzione per scorrere alla precedente immagine
+function prevSlide() {
+  const gallery = document.querySelector('.gallery');
+  const slides = gallery.querySelectorAll('.slide');
+
+  // Sposta l'ultima immagine alla prima posizione
+  const lastSlide = slides[slides.length - 1];
+  gallery.insertBefore(lastSlide, slides[0]);
+
+  // Rimuovi la classe 'center-slide' da tutte le immagini
+  slides.forEach(slide => {
+    slide.classList.remove('center-slide');
+  });
+
+  // Aggiorna la nuova immagine centrale
+  const newCenterSlide = gallery.querySelector('.slide:nth-child(2)');
+  newCenterSlide.classList.add('center-slide');
+}
+
+
+
+
+// Aggiungi gli eventi ai bottoni
+prevBtn.addEventListener('click', prevSlide);
+nextBtn.addEventListener('click', nextSlide);
+});
+
