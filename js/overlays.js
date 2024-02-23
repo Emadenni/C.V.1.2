@@ -215,7 +215,7 @@ const overlays = [
     },
   },
   {
-    img: "./images/languageIcon.png",
+    img: "./images/portfolioIcon.png",
     title: "Portfolio",
     info: {
       list: [
@@ -225,13 +225,13 @@ const overlays = [
         `<span style="color: white; "> TypeScript and Api - educational project </span> <a href="https://github.com/Emadenni/mini-library.git" target="_blank">Mini Library</a>  `,
         `<span style="color: white; "> React - educational project </span> <a href="https://github.com/Emadenni/react.git" target="_blank">on the way</a> `,
         `<span style="color: white; "> Vanilla JavaScript & co. - private </span>  <a href="https://github.com/Emadenni/C.V.1.2.git" target="_blank">C.V. 1.2 (this app)</a> `,
-        `<span style="color: white; "> JavaScrip/React - private</span>   <a href="https://github.com/Emadenni/KFF.gitt" target="_blank">C.V. 1.2 (this app)</a> `,
+        `<span style="color: white; "> JavaScrip/React - private</span>   <a href="https://github.com/Emadenni/KFF.git" target="_blank">Kevin's fast feast</a> `,
         `<span style="color: white; "> Look more...   <a href="https://github.com/Emadenni/" target="_blank">Git Hub</a> `,
       ],
     },
   },
   {
-    img: "./images/languageIcon.png",
+    img: "./images/portfolioIcon.png",
     title: "Portfolio",
     info: {
       paragraph: `
@@ -239,14 +239,28 @@ const overlays = [
         <div class="gallery-container">
         
         <div class="gallery">
-      <div class="slide" id="slide1"><img class="slide-img" src="https://picsum.photos/220" alt="Image 1"></div>
-        <div class="slide center-slide"  id="slide2"><img class="slide-img" src="https://picsum.photos/220" alt="Image 3"></div>
-       <div class="slide" id="slide3"><img class="slide-img" src="./images/languageIcon.png" alt="Image 2"></div>
-       <div class="slide center-slide" id="slide4"><img class="slide-img" src="./images/languageIcon.png" alt="Image 4"></div>
-        <div class="slide" id="slide5"><img class="slide-img" src="https://picsum.photos/220" alt="Image 5"></div>
-        <div class="slide center-slide" id="slide6"><img class="slide-img" src="./images/languageIcon.png" alt="Image 6">/div>
-        <div class="slide" id="slide7"><img class="slide-img" src="https://picsum.photos/220" alt="Image 7"</div>
-        <div class="slide center-slide" id="slide8"><img class="slide-img" src="./images/languageIcon.png" alt="Image 8"></div>
+      <div class="slide" id="slide1">
+       <img class="slide-img" src="./images/portfolioImgs/BonzAi1.png" alt="Image 1">
+       </div>
+
+      <div class="slide center-slide" id="slide2"> 
+      <img class="slide-img" src="./images/portfolioImgs/BonzAi2.png" alt="Image 2">
+      </div>
+
+      <div class="slide" id="slide3"> 
+      <img class="slide-img" src="./images/portfolioImgs/BonzAi3.png" alt="Image 3">
+      </div>
+
+      <div class="slide center-slide" id="slide4S"> 
+      <img class="slide-img" src="./images/portfolioImgs/BonzAi4.png" alt="Image 4">
+      </div>
+
+
+      <div class="slide" id="slide5">
+      <img class="slide-img" src="./images/portfolioImgs/BonzAi5.png" alt="Image 5">
+      </div>
+
+       
       </div>
       
             
