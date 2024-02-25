@@ -8,45 +8,51 @@ const mainContent = document.getElementById("main-content");
 const summering = document.getElementById("summering");
 const hamburgerMenu = document.querySelector(".hamburgerMenu");
 const bigCloseBtn = document.querySelector(".bigCloseBtn");
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
 
 menuIcons.forEach((icon) => {
-  icon.addEventListener("click", () => {
-    setTimeout(() => {
-      menuIcons[0].classList.add("hidden");
-    }, 20);
-
-    // Nascondi il secondo frame dopo 400 millisecondi
-    setTimeout(() => {
-      menuIcons[1].classList.add("hidden");
-    }, 40);
-
-    // Mostra il terzo frame dopo 600 millisecondi
-    setTimeout(() => {
-      menuIcons[2].classList.remove("hidden");
-    }, 40);
-
-    // Nascondi il terzo frame dopo 800 millisecondi
-    setTimeout(() => {
-      menuIcons[2].classList.add("hidden");
-    }, 60);
-
-    // Mostra il quarto frame dopo 1000 millisecondi
-    setTimeout(() => {
-      menuIcons[3].classList.remove("hidden");
-
-      // Rimuovi la classe "hidden" da menuList
-      menuList.classList.remove("hidden");
-
-      // Mostra gli elementi della lista uno per volta
-      menuListItems.forEach((item, index) => {
+  icon.addEventListener("click", (event) => {
+    event.stopPropagation();
+    menuIcons.forEach((icon) => {
+      icon.addEventListener("click", () => {
         setTimeout(() => {
-          item.classList.remove("hidden");
-        }, 140 * (index + 1)); // Ritardo di 500 millisecondi tra ciascun elemento
+          menuIcons[0].classList.add("hidden");
+        }, 20);
+
+        // Nascondi il secondo frame dopo 400 millisecondi
+        setTimeout(() => {
+          menuIcons[1].classList.add("hidden");
+        }, 40);
+
+        // Mostra il terzo frame dopo 600 millisecondi
+        setTimeout(() => {
+          menuIcons[2].classList.remove("hidden");
+        }, 40);
+
+        // Nascondi il terzo frame dopo 800 millisecondi
+        setTimeout(() => {
+          menuIcons[2].classList.add("hidden");
+        }, 60);
+
+        // Mostra il quarto frame dopo 1000 millisecondi
+        setTimeout(() => {
+          menuIcons[3].classList.remove("hidden");
+
+          // Rimuovi la classe "hidden" da menuList
+          menuList.classList.remove("hidden");
+
+          // Mostra gli elementi della lista uno per volta
+          menuListItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.remove("hidden");
+            }, 140 * (index + 1)); // Ritardo di 500 millisecondi tra ciascun elemento
+          });
+        }, 50);
       });
-    }, 50);
+    });
   });
+ 
 });
 
 function resetMenu() {
@@ -120,17 +126,20 @@ setTimeout(function () {
 /* startBtn.addEventListener("click", () => {
   console.log("Clicked start button");
 }); */
-document.addEventListener('DOMContentLoaded', function() {
-// Funzione per visualizzare l'overlay
-let overlayIndex = 0; // Indice per tenere traccia dell'overlay corrente
+document.addEventListener("DOMContentLoaded", function () {
+  // Funzione per visualizzare l'overlay
+  let overlayIndex = 0; // Indice per tenere traccia dell'overlay corrente
 
-function createOverlay(overlay) {
-  return `
+  function createOverlay(overlay) {
+    return `
     <section id="overlay-content">
-      <figure class="pic"><img class="argumentsIcons" src="${overlay.img}" alt="pic" /></figure>
-      <article>
-      
-        <h2 id="overlayTitle">${overlay.title}</h2>
+
+        <div id="overlay-header">
+          <figure class="pic"><img class="argumentsIcons" src="${overlay.img}" alt="pic" /></figure>
+          <h2 id="overlayTitle">${overlay.title}</h2>  
+        </div>
+
+    <article>
         <div id="overlayInfoBox">
           ${overlay.info.paragraph ? `<p id="overlayParagraph">${overlay.info.paragraph}</p>` : ""}
           ${
@@ -147,159 +156,148 @@ function createOverlay(overlay) {
       </article>
     </section>
   `;
-}
+  }
 
-// Aggiungi una funzione per creare la barra di progresso
-function createProgressBar() {
-  return `<div id="progress-bar-container">
+  // Aggiungi una funzione per creare la barra di progresso
+  function createProgressBar() {
+    return `<div id="progress-bar-container">
             <div id="progress-bar"></div>
           </div>`;
-}
+  }
 
-// Aggiorna la funzione showOverlay
-function showOverlay() {
-  // Svuota completamente mainContent
-  mainContent.innerHTML = "";
+  // Aggiorna la funzione showOverlay
+  function showOverlay() {
+    // Svuota completamente mainContent
+    mainContent.innerHTML = "";
 
-  // Controlla se abbiamo più overlay da mostrare
-  if (overlayIndex < overlays.length) {
-    const overlay = overlays[overlayIndex];
+    // Controlla se abbiamo più overlay da mostrare
+    if (overlayIndex < overlays.length) {
+      const overlay = overlays[overlayIndex];
 
-   
-    if (overlay && overlay.img && overlay.title && overlay.info) {
-      const overlayContainer = document.createElement("div");
-      overlayContainer.innerHTML = createOverlay(overlay);
-      overlayContainer.innerHTML += createProgressBar();
+      if (overlay && overlay.img && overlay.title && overlay.info) {
+        const overlayContainer = document.createElement("div");
+        overlayContainer.innerHTML = createOverlay(overlay);
+        overlayContainer.innerHTML += createProgressBar();
 
-      // Aggiungi gestione eventi per i bottoni (back, next, skip) e altre logiche necessarie
-      const backBtn = overlayContainer.querySelector("#backBtn");
-      const continueBtn = overlayContainer.querySelector("#continueBtn");
-      const skipBtn = overlayContainer.querySelector("#skipBtn");
+        // Aggiungi gestione eventi per i bottoni (back, next, skip) e altre logiche necessarie
+        const backBtn = overlayContainer.querySelector("#backBtn");
+        const continueBtn = overlayContainer.querySelector("#continueBtn");
+        const skipBtn = overlayContainer.querySelector("#skipBtn");
 
-      backBtn.addEventListener("click", handleBack);
-      continueBtn.addEventListener("click", handleContinue);
-      skipBtn.addEventListener("click", handleSkip);
-   
-      // Mostra l'overlay
-      mainContent.appendChild(overlayContainer);
-      updateProgressBar(); // Aggiorna la barra di progresso iniziale
-     if (overlayIndex === 19) {
-  prevBtn.style.display = "block";
-  nextBtn.style.display = "block";
-  
-} else {
-  prevBtn.style.display = "none";
-  nextBtn.style.display = "none";
-}
+        backBtn.addEventListener("click", handleBack);
+        continueBtn.addEventListener("click", handleContinue);
+        skipBtn.addEventListener("click", handleSkip);
 
-      
+        // Mostra l'overlay
+        mainContent.appendChild(overlayContainer);
+        updateProgressBar(); // Aggiorna la barra di progresso iniziale
+        if (overlayIndex === 19) {
+          prevBtn.style.display = "block";
+          nextBtn.style.display = "block";
+        } else {
+          prevBtn.style.display = "none";
+          nextBtn.style.display = "none";
+        }
+      } else {
+        console.error("Dati overlay non validi o mancanti.");
+      }
     } else {
-      console.error("Dati overlay non validi o mancanti.");
+      // Mostriamo tutti gli overlay, fai qualcosa quando hai finito
+      showSummering();
     }
-  } else {
-    // Mostriamo tutti gli overlay, fai qualcosa quando hai finito
+  }
+
+  // Funzione per aggiornare la barra di progresso
+  function updateProgressBar() {
+    const progressBar = document.getElementById("progress-bar");
+    const progressPercentage = ((overlayIndex + 1) / overlays.length) * 100; // Calcola la percentuale di progresso
+    progressBar.style.width = `${progressPercentage}%`;
+  }
+
+  // Restante codice rimane invariato
+  // ...
+
+  // Aggiungi la logica per mostrare l'overlay quando si clicca su "Start"
+  startBtn.addEventListener("click", showOverlay);
+
+  function handleBack() {
+    // Logica per tornare all'overlay precedente
+    overlayIndex--;
+    updateProgressBar();
+    showOverlay();
+    console.log("Back button clicked");
+  }
+
+  function handleContinue() {
+    // Logica per passare all'overlay successivo
+    overlayIndex++;
+    updateProgressBar();
+    showOverlay(); // Mostra il prossimo overlay
+  }
+
+  function handleSkip() {
+    // Logica per saltare agli ultimi overlay
+    overlayIndex = overlays.length; // Imposta l'indice all'ultimo overlay
     showSummering();
   }
-}
 
+  // Aggiungi la logica per mostrare l'overlay quando si clicca su "Start"
+  startBtn.addEventListener("click", showOverlay);
 
-// Funzione per aggiornare la barra di progresso
-function updateProgressBar() {
-  const progressBar = document.getElementById("progress-bar");
-  const progressPercentage = ((overlayIndex + 1) / overlays.length) * 100; // Calcola la percentuale di progresso
-  progressBar.style.width = `${progressPercentage}%`;
-}
+  function showSummering() {
+    if ((overlayIndex = overlays.length)) {
+      console.log("last overlay");
+      mainContent.style.display = "none";
+      menuIcons.forEach((icon) => {
+        icon.style.display = "none";
+      });
+      summering.style.display = "flex";
+      bigCloseBtn.style.display = "block";
 
-// Restante codice rimane invariato
-// ...
-
-// Aggiungi la logica per mostrare l'overlay quando si clicca su "Start"
-startBtn.addEventListener("click", showOverlay);
-
-function handleBack() {
-  // Logica per tornare all'overlay precedente
-  overlayIndex--;
-  updateProgressBar();
-  showOverlay();
-  console.log("Back button clicked");
-}
-
-function handleContinue() {
-  // Logica per passare all'overlay successivo
-  overlayIndex++;
-  updateProgressBar();
-  showOverlay(); // Mostra il prossimo overlay
-}
-
-function handleSkip() {
-  // Logica per saltare agli ultimi overlay
-  overlayIndex = overlays.length; // Imposta l'indice all'ultimo overlay
-  showSummering();
-}
-
-// Aggiungi la logica per mostrare l'overlay quando si clicca su "Start"
-startBtn.addEventListener("click", showOverlay);
-
-function showSummering() {
-  if ((overlayIndex = overlays.length)) {
-    console.log("last overlay");
-    mainContent.style.display = "none";
-    menuIcons.forEach((icon) => {
-      icon.style.display = "none";
-    });
-    summering.style.display = "flex";
-    bigCloseBtn.style.display = "block";
-
-    bigCloseBtn.addEventListener("click", () => {
-      location.reload();
-    });
+      bigCloseBtn.addEventListener("click", () => {
+        location.reload();
+      });
+    }
   }
-}
 
+  function nextSlide() {
+    const gallery = document.querySelector(".gallery");
+    const slides = gallery.querySelectorAll(".slide");
 
+    // Sposta l'ultima immagine alla prima posizione
+    const lastSlide = slides[slides.length - 1];
+    gallery.insertBefore(lastSlide, slides[0]);
 
-function nextSlide() {
-  const gallery = document.querySelector('.gallery');
-  const slides = gallery.querySelectorAll('.slide');
+    // Rimuovi la classe 'center-slide' da tutte le immagini
+    slides.forEach((slide) => {
+      slide.classList.remove("center-slide");
+    });
 
-  // Sposta l'ultima immagine alla prima posizione
-  const lastSlide = slides[slides.length - 1];
-  gallery.insertBefore(lastSlide, slides[0]);
+    // Aggiorna la nuova immagine centrale (seconda immagine)
+    const newCenterSlide = gallery.querySelector(".slide:nth-child(2)");
+    newCenterSlide.classList.add("center-slide");
+  }
 
-  // Rimuovi la classe 'center-slide' da tutte le immagini
-  slides.forEach(slide => {
-    slide.classList.remove('center-slide');
-  });
+  // Funzione per scorrere alla precedente immagine
+  function prevSlide() {
+    const gallery = document.querySelector(".gallery");
+    const slides = gallery.querySelectorAll(".slide");
 
-  // Aggiorna la nuova immagine centrale (seconda immagine)
-  const newCenterSlide = gallery.querySelector('.slide:nth-child(2)');
-  newCenterSlide.classList.add('center-slide');
-}
+    // Sposta l'ultima immagine alla prima posizione
+    const lastSlide = slides[slides.length - 1];
+    gallery.insertBefore(lastSlide, slides[0]);
 
+    // Rimuovi la classe 'center-slide' da tutte le immagini
+    slides.forEach((slide) => {
+      slide.classList.remove("center-slide");
+    });
 
-// Funzione per scorrere alla precedente immagine
-function prevSlide() {
-  const gallery = document.querySelector('.gallery');
-  const slides = gallery.querySelectorAll('.slide');
+    // Aggiorna la nuova immagine centrale
+    const newCenterSlide = gallery.querySelector(".slide:nth-child(2)");
+    newCenterSlide.classList.add("center-slide");
+  }
 
-  // Sposta l'ultima immagine alla prima posizione
-  const lastSlide = slides[slides.length - 1];
-  gallery.insertBefore(lastSlide, slides[0]);
-
-  // Rimuovi la classe 'center-slide' da tutte le immagini
-  slides.forEach(slide => {
-    slide.classList.remove('center-slide');
-  });
-
-  // Aggiorna la nuova immagine centrale
-  const newCenterSlide = gallery.querySelector('.slide:nth-child(2)');
-  newCenterSlide.classList.add('center-slide');
-}
-
-
-
-
-// Aggiungi gli eventi ai bottoni
-prevBtn.addEventListener('click', prevSlide);
-nextBtn.addEventListener('click', nextSlide);
+  // Aggiungi gli eventi ai bottoni
+  prevBtn.addEventListener("click", prevSlide);
+  nextBtn.addEventListener("click", nextSlide);
 });
